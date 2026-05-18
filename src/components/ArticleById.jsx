@@ -70,35 +70,13 @@ function ArticleByID() {
         <div className={articleAuthorRow}><div className={authorInfo}>✍️ {user?.role}</div><div>{formatDate(article.createdAt)}</div></div>
       </div>
       <div className={articleContent}>{article.content}</div>
-      {user?.role === "AUTHOR" && (
-        <div className={articleActions}>
-          <button className={editBtn} onClick={() => navigate("/edit-article", { state: article })}>Edit</button>
-          <button className={deleteBtn} onClick={toggleArticleStatus}>{article.isArticleActive ? "Delete" : "Restore"}</button>
-        </div>
-      )}
-      {user?.role === "USER" && (
-        <div className={articleActions}>
-          <form onSubmit={handleSubmit(addComment)}>
-            <input type="text" {...register("comment")} className={inputClass} placeholder="Write your comment here..." />
-            <button type="submit" className="bg-amber-600 text-white px-5 py-2 rounded-2xl mt-5">Add comment</button>
-          </form>
-        </div>
-      )}
+      {user?.role === "AUTHOR" && (<div className={articleActions}><button className={editBtn} onClick={() => navigate("/edit-article", { state: article })}>Edit</button><button className={deleteBtn} onClick={toggleArticleStatus}>{article.isArticleActive ? "Delete" : "Restore"}</button></div>)}
+      {user?.role === "USER" && (<div className={articleActions}><form onSubmit={handleSubmit(addComment)}><input type="text" {...register("comment")} className={inputClass} placeholder="Write your comment here..." /><button type="submit" className="bg-amber-600 text-white px-5 py-2 rounded-2xl mt-5">Add comment</button></form></div>)}
       <div className={commentsWrapper}>
         {article.comments?.length === 0 && <p className="text-[#a1a1a6] text-sm text-center">No comments yet</p>}
         {article.comments?.map((c, i) => {
           const name = c.user?.email || "User";
-          return (
-            <div key={i} className={commentCard}>
-              <div className={commentHeader}>
-                <div className={commentUserRow}>
-                  <div className={avatar}>{name.charAt(0).toUpperCase()}</div>
-                  <div><p className={commentUser}>{name}</p><p className={commentTime}>{formatDate(c.createdAt || new Date())}</p></div>
-                </div>
-              </div>
-              <p className={commentText}>{c.comment}</p>
-            </div>
-          );
+          return (<div key={i} className={commentCard}><div className={commentHeader}><div className={commentUserRow}><div className={avatar}>{name.charAt(0).toUpperCase()}</div><div><p className={commentUser}>{name}</p><p className={commentTime}>{formatDate(c.createdAt || new Date())}</p></div></div></div><p className={commentText}>{c.comment}</p></div>);
         })}
       </div>
       <div className={articleFooter}>Last updated: {formatDate(article.updatedAt)}</div>
