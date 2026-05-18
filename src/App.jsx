@@ -53,7 +53,7 @@ function App() {
             { path: "write-article", element: <WriteArticles /> },
           ],
         },
-        { path: "article/:id", element: <ArticleByID /> },
+        { path: "article/:id", element: <ArticleById /> },
         { path: "edit-article/:id", element: <EditArticle /> },
         { path: "unauthorized", element: <Unauthorized /> },
       ],
