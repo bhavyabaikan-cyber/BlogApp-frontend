@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate,NavLink } from "react-router";
 import axios from "axios";
 import { toast } from "react-hot-toast";
+import { API_BASE_URL } from "../apiUrl";
 import {
   pageBackground, formCard, formTitle, formGroup, labelClass,
   inputClass, submitBtn, errorClass, mutedText, linkClass, divider
@@ -42,7 +43,7 @@ function Register() {
       //start loading
       setLoading(true);
       //make HTTP POST req to create User in backend
-      let res = await axios.post("http://localhost:5000/auth/users", formData,{withCredentials:true});
+      let res = await axios.post(`${API_BASE_URL}/auth/users`, formData,{withCredentials:true});
 
       if (res.status === 201) {
         //navigate to Login
