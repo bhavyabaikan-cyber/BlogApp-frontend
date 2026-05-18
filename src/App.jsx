@@ -21,18 +21,9 @@ function App() {
       path: "/",
       element: <RootLayout />,
       children: [
-        {
-          path: "",
-          element: <Home />,
-        },
-        {
-          path: "register",
-          element: <Register />,
-        },
-        {
-          path: "login",
-          element: <Login />,
-        },
+        { path: "", element: <Home /> },
+        { path: "register", element: <Register /> },
+        { path: "login", element: <Login /> },
         {
           path: "user-profile",
           element: (
@@ -57,32 +48,14 @@ function App() {
             </ProtectedRoute>
           ),
           children: [
-            {
-              index: true,
-              element: <AuthorArticles />,
-            },
-            {
-              path: "articles",
-              element: <AuthorArticles />,
-            },
-            {
-              path: "write-article",
-              element: <WriteArticles />,
-            },
+            { index: true, element: <AuthorArticles /> },
+            { path: "articles", element: <AuthorArticles /> },
+            { path: "write-article", element: <WriteArticles /> },
           ],
         },
-        {
-          path: "article/:id",
-          element: <ArticleByID />,
-        },
-        {
-          path: "edit-article/:id",
-          element: <EditArticle />,
-        },
-        {
-          path: "unauthorized",
-          element: <Unauthorized />,
-        },
+        { path: "article/:id", element: <ArticleByID /> },
+        { path: "edit-article/:id", element: <EditArticle /> },
+        { path: "unauthorized", element: <Unauthorized /> },
       ],
     },
   ]);
@@ -96,4 +69,3 @@ function App() {
 }
 
 export default App;
-
